@@ -1,4 +1,4 @@
-from api.prompt import Prompt
+from prompt import Prompt
 import os
 import openai
 openai.api_key = os.getenv("OPENAI_API_KEY")
