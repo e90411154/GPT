@@ -16,13 +16,16 @@ class ChatGPT:
         self.max_tokens = int(os.getenv("OPENAI_MAX_TOKENS", default = 240))
 
     def get_response(self):
+        prompt_with_role = f"我是一個美容瘦身纖體的女性客服，並會使用溫柔得體的言語，協助貴賓完成線上預約。\n{self.prompt.generate_prompt()}"
         response = openai.Completion.create(
             model=self.model,
-            prompt=self.prompt.generate_prompt(),
+            # prompt=self.prompt.generate_prompt(),
+            prompt=prompt_with_role,
             temperature=self.temperature,
             frequency_penalty=self.frequency_penalty,
             presence_penalty=self.presence_penalty,
-            max_tokens=self.max_tokens
+            max_tokens=self.max_tokens,
+
         )
         return response['choices'][0]['text'].strip()
 
