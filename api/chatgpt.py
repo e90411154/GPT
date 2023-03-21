@@ -10,10 +10,10 @@ class ChatGPT:
         self.prompt = Prompt()
         self.model = os.getenv("OPENAI_MODEL", default = "text-davinci-003")
         #self.model = os.getenv("OPENAI_MODEL", default = "chatbot")
-        self.temperature = float(os.getenv("OPENAI_TEMPERATURE", default = 0))
-        self.frequency_penalty = float(os.getenv("OPENAI_FREQUENCY_PENALTY", default = 0))
-        self.presence_penalty = float(os.getenv("OPENAI_PRESENCE_PENALTY", default = 0.6))
-        self.max_tokens = int(os.getenv("OPENAI_MAX_TOKENS", default = 240))
+        self.temperature = float(os.getenv("OPENAI_TEMPERATURE", default = 0.2))
+        self.frequency_penalty = float(os.getenv("OPENAI_FREQUENCY_PENALTY", default = 1.0))
+        self.presence_penalty = float(os.getenv("OPENAI_PRESENCE_PENALTY", default = 1.0))
+        self.max_tokens = int(os.getenv("OPENAI_MAX_TOKENS", default = 1000))
 
     def get_response(self):
         
@@ -29,7 +29,7 @@ class ChatGPT:
             f"- 極效爆脂(必做！抽脂前後最佳保養。不論你是哪種身形，想擁有性感曲線卻無法擺脫難纏的贅肉？現在就來親身體驗吧！讓你成為下一個聚會上最吸睛的焦點！)，首次體驗價：2500 ( 加1元加贈魔力蠍尾刷 )原價：5900／20 分鐘 ( 加魔力蠍尾體刷課程 10分鐘 ) 共 30 分鐘／堂，詳情 https://www.keybeauty.tw/themes/UW1634828449 \n"
             f"以及其他課程，則會回應我們將請專人為您更詳細的解說。\n"
             f"{self.prompt.generate_prompt()}"
-        )
+        )？
 
         response = openai.Completion.create(
             model=self.model,
@@ -41,7 +41,8 @@ class ChatGPT:
             max_tokens=self.max_tokens,
 
         )
-        return response['choices'][0]['text'].strip()
+        # return response['choices'][0]['text'].strip()
+        return f"AI:{response['choices'][0]['text'].strip()}"
 
     def add_msg(self, text):
         self.prompt.add_msg(text)
