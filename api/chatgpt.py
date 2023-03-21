@@ -51,10 +51,10 @@ class ChatGPT:
 
         # 進行後處理
 
-        response_text = response_text.replace("BeautySlim", company_name)
+        response_text = response_text.replace("Beauty Slim", company_name)
         response_text = response_text.replace("+886-2-2555-8888", company_phone)
         response_text = response_text.replace("XXXXXXX", company_phone)
-        response_text = response_text.replace("0987-654-421", company_phone)
+        response_text = response_text.replace("0987-654-321", company_phone)
         response_text = response_text.replace("台北市中正區忠孝東路一段123號", company_address)
         response_text = response_text.replace("www.example.com", company_website)
         response_text = response_text.replace("www.beautyslim.com.tw", company_website)
